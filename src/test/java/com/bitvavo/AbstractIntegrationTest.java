@@ -30,7 +30,7 @@ public class AbstractIntegrationTest {
     public static File[] getFiles(String first, String... more){
         File[] files = Paths.get(first, more).toFile().listFiles();
 
-        Arrays.sort(files, Comparator.comparingInt((file -> Integer.parseInt(file.getName().split("\\.")[0].substring(4,5)))));
+        Arrays.sort(files, Comparator.comparingInt((file -> Integer.parseInt(file.getName().split("\\.")[0]))));
 
         return files;
     }
@@ -44,8 +44,8 @@ public class AbstractIntegrationTest {
             BufferedReader inputReader = new BufferedReader(new FileReader(inputFiles[i]));
             BufferedReader outputReader = new BufferedReader(new FileReader(outputFiles[i]));
 
-            String input = inputReader.lines().reduce("", (a, b) -> a +b + "\n");
-            String output = outputReader.lines().reduce("", (a, b) -> a +b + "\n");
+            String input = inputReader.lines().reduce("", (a, b) -> a + b + "\n");
+            String output = outputReader.lines().reduce("", (a, b) -> a + b + "\n");
 
             params.add(Arguments.of(input, output));
         }
