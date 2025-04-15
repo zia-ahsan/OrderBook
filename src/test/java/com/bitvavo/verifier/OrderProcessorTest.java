@@ -1,4 +1,4 @@
-package com.bitvavo;
+package com.bitvavo.verifier;
 
 import org.junit.jupiter.api.Test;
 
@@ -44,30 +44,6 @@ class OrderProcessorTest {
         assertTrue(output.contains("100")); // Buy side present
     }
 
-    /*@Test
-    void testPartialMatchAndQueueCleanup() {
-        OrderProcessor processor = new OrderProcessor();
-
-        // Sell order in book with 1000 units
-        processor.processOrder(new Order("S1", 'S', 100, 1000));
-
-        // Buy order comes in for only 400 (partial match)
-        processor.processOrder(new Order("B1", 'B', 100, 400));
-
-        // Remaining 600 of S1 should still be in the book
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out;
-        System.setOut(new PrintStream(out));
-
-        processor.printOrderBook();
-
-        System.setOut(originalOut);
-        String output = out.toString();
-
-        assertTrue(output.contains("600")); // 600 should remain
-        assertTrue(output.contains("100")); // At price 100
-    }
-*/
     @Test
     void testSellOrderPartiallyMatchesBuyAndRequeues() {
         OrderProcessor processor = new OrderProcessor();

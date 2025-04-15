@@ -1,4 +1,4 @@
-package com.bitvavo;
+package com.bitvavo.verifier;
 
 import java.util.*;
 

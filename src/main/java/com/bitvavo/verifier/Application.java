@@ -1,4 +1,4 @@
-package com.bitvavo;
+package com.bitvavo.verifier;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +13,7 @@ public class Application {
 
         OrderProcessor processor = new OrderProcessor();
 
+        int orderCount = 0;
         String line;
         while (true) {
             try {
@@ -30,6 +31,7 @@ public class Application {
 
             Order order = new Order(orderId, side, price, quantity);
             processor.processOrder(order);
+            orderCount++;
         }
 
         processor.printOrderBook();
@@ -38,7 +40,9 @@ public class Application {
         long endMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 
         System.err.println("Total time (ms): " + (endTime - startTime) / 1_000_000);
-        System.err.println("Average time per order (micro seconds): " + (endTime - startTime) / 100_000);
+        if (orderCount > 0) {
+            System.err.println("Average time per order (micro seconds): " + (endTime - startTime) / orderCount / 1_000);
+        }
         System.err.println("Approx. memory used (MB): " + (endMemory - startMemory) / (1024 * 1024));
     }
 }

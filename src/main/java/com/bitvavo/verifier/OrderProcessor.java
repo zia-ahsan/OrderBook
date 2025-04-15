@@ -1,6 +1,6 @@
-package com.bitvavo;
+package com.bitvavo.verifier;
 
-import com.bitvavo.util.OrderBookPrinter;
+import com.bitvavo.verifier.util.OrderBookPrinter;
 
 import java.util.*;
 

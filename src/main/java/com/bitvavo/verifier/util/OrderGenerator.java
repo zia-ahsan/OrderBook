@@ -1,4 +1,4 @@
-package com.bitvavo.util;
+package com.bitvavo.verifier.util;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -9,14 +9,14 @@ public class OrderGenerator {
 
     public static void main(String[] args) throws IOException {
         int numOrders = 100_000; // default
-        String outputPath = "orders_100k.txt"; // default
+        String outputPath = String.format("orders%06d.txt", numOrders); // default formatted filename
 
-        // Allow custom args
         if (args.length >= 1) {
             numOrders = Integer.parseInt(args[0]);
+            outputPath = String.format("orders%06d.txt", numOrders);
         }
         if (args.length >= 2) {
-            outputPath = args[1];
+            outputPath = args[1]; // override filename if provided
         }
 
         generateOrders(numOrders, outputPath);

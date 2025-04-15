@@ -1,4 +1,4 @@
-package com.bitvavo;
+package com.bitvavo.verifier;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
