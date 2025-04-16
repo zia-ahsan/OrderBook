@@ -38,7 +38,7 @@ public class OrderGenerator {
                 int price = rand.nextInt(maxPrice - minPrice + 1) + minPrice;
                 int quantity = rand.nextInt(maxQty - minQty + 1) + minQty;
 
-                writer.write(String.format("%d, %s, %d, %d%n", orderId, side, price, quantity));
+                writer.write(String.format("%d, %s, %d, %d\n", orderId, side, price, quantity));
             }
         }
     }

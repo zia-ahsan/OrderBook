@@ -76,7 +76,7 @@ mvn clean package
 ### ▶️ Run with input redirection
 
 ```bash
-java -cp target/OrderBook-1.0-SNAPSHOT.jar com.bitvavo.Main < src/test/resources/test-cases/input/test1.txt
+java -cp target/OrderBook-1.0-SNAPSHOT.jar com.bitvavo.verifier.Application < src/test/resources/test-cases/input/test1.txt
 ```
 
 ---
@@ -126,8 +126,6 @@ Open the file:
 target/site/jacoco/index.html
 ```
 
-You can also set build to fail if coverage drops below 80%.
-
 ---
 
 ## 🛠 Utilities
@@ -135,7 +133,7 @@ You can also set build to fail if coverage drops below 80%.
 ### Generate Test Orders
 
 ```bash
-java -cp target/OrderBook-1.0-SNAPSHOT.jar com.bitvavo.OrderGenerator 100000 orders_100k.txt
+java -cp target/OrderBook-1.0-SNAPSHOT.jar com.bitvavo.verifier.OrderGenerator 100000 orders_100k.txt
 ```
 
 ---
@@ -145,8 +143,8 @@ java -cp target/OrderBook-1.0-SNAPSHOT.jar com.bitvavo.OrderGenerator 100000 ord
 ```text
 src/
   main/
-    java/com/bitvavo/
-      Main.java
+    java/com/bitvavo/verifier/
+      Application.java
       Order.java
       OrderBook.java
       OrderProcessor.java
@@ -154,7 +152,7 @@ src/
       OrderBookPrinter.java
       OrderGenerator.java
   test/
-    java/com/bitvavo/
+    java/com/bitvavo/verifier/
       IntegrationTest.java
       AbstractIntegrationTest.java
     java/com/bitvavo/util/
