@@ -4,19 +4,40 @@ import com.bitvavo.verifier.util.OrderBookPrinter;
 
 import java.util.*;
 
+/**
+ * Processes incoming orders by matching them against existing orders in the order book.
+ */
 public class OrderProcessor {
     private final OrderBook orderBook = new OrderBook();
 
-    public void processOrder(Order order) {
-        if (order.side() == 'B') {
-            order = matchBuyOrder(order);
-            if (order.quantity() > 0) addOrder(orderBook.getBuyOrders(), order);
-        } else {
-            order = matchSellOrder(order);
-            if (order.quantity() > 0) addOrder(orderBook.getSellOrders(), order);
+    /**
+     * Processes a new order by attempting to match it with existing orders.
+     * If not fully matched, adds the remaining order to the appropriate order book.
+     *
+     * @param incomingOrder The incoming order to process.
+     */
+    public void processOrder(final Order incomingOrder) {
+        final Order processedOrder = incomingOrder.side() == 'B'
+                ? matchBuyOrder(incomingOrder)
+                : matchSellOrder(incomingOrder);
+
+        if (processedOrder.quantity() > 0) {
+            if (processedOrder.side() == 'B') {
+                addOrder(orderBook.getBuyOrders(), processedOrder);
+            } else {
+                addOrder(orderBook.getSellOrders(), processedOrder);
+            }
         }
     }
 
+    /**
+     * Attempts to match a buy order with available sell orders.
+     * Matches occur if the sell price is less than or equal to the buy price.
+     * Fully or partially matched sell orders are removed or updated.
+     *
+     * @param buyOrder The incoming buy order.
+     * @return The remaining portion of the buy order after matching.
+     */
     private Order matchBuyOrder(Order buyOrder) {
         NavigableMap<Integer, Queue<Order>> sellOrders = orderBook.getSellOrders();
         Iterator<Map.Entry<Integer, Queue<Order>>> it = sellOrders.entrySet().iterator();
@@ -47,6 +68,14 @@ public class OrderProcessor {
         return buyOrder;
     }
 
+    /**
+     * Attempts to match a sell order with available buy orders.
+     * Matches occur if the buy price is greater than or equal to the sell price.
+     * Fully or partially matched buy orders are removed or updated.
+     *
+     * @param sellOrder The incoming sell order.
+     * @return The remaining portion of the sell order after matching.
+     */
     private Order matchSellOrder(Order sellOrder) {
         NavigableMap<Integer, Queue<Order>> buyOrders = orderBook.getBuyOrders();
         Iterator<Map.Entry<Integer, Queue<Order>>> it = buyOrders.entrySet().iterator();
@@ -77,6 +106,12 @@ public class OrderProcessor {
         return sellOrder;
     }
 
+    /**
+     * Adds an unmatched order to the appropriate order book queue.
+     *
+     * @param book  The price-level map (buy or sell side).
+     * @param order The remaining unmatched order to add.
+     */
     private void addOrder(NavigableMap<Integer, Queue<Order>> book, Order order) {
         book.computeIfAbsent(order.price(), k -> new LinkedList<>()).add(order);
     }

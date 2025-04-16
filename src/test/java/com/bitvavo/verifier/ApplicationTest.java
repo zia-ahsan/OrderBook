@@ -8,6 +8,9 @@ import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for the Application class.
+ */
 class ApplicationTest {
 
     private final PrintStream originalOut = System.out;

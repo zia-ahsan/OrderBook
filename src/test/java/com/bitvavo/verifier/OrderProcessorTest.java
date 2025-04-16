@@ -5,8 +5,12 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Unit tests for the OrderProcessor class.
+ */
 class OrderProcessorTest {
 
     @Test
@@ -54,7 +58,6 @@ class OrderProcessorTest {
         // Step 2: Add a SELL order of quantity 400 (partial match)
         processor.processOrder(new Order("S1", 'S', 100, 400));
 
-        // This should trigger the else block:
         // - B1 is partially matched (600 remaining)
         // - It gets re-added to the book
 

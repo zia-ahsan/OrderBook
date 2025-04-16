@@ -1,9 +1,12 @@
 package com.bitvavo.verifier;
 
 /**
- * Immutable Order record.
- * - orderId, side, price are final
- * - quantity is mutable and updated directly as it's reduced during trades
+ * Represents an individual order in the order book.
+ *
+ * @param orderId  Unique identifier for the order.
+ * @param side     Side of the order: 'B' for Buy, 'S' for Sell.
+ * @param price    Price per unit for the order.
+ * @param quantity Quantity of units in the order.
  */
 public record Order(String orderId, char side, int price, int quantity) {
 

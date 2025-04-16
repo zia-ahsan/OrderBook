@@ -5,8 +5,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * Generates a specified number of random orders and writes them to a file.
+ */
 public class OrderGenerator {
 
+    /**
+     * Main method to generate orders.
+     *
+     * @param args Command-line arguments: [number of orders] [output file path]
+     * @throws IOException If an I/O error occurs.
+     */
     public static void main(String[] args) throws IOException {
         int numOrders = 100_000; // default
         String outputPath = String.format("orders%06d.txt", numOrders); // default formatted filename
@@ -23,6 +32,13 @@ public class OrderGenerator {
         System.out.println("Generated " + numOrders + " orders at: " + outputPath);
     }
 
+    /**
+     * Generates random orders and writes them to the specified file.
+     *
+     * @param numOrders Number of orders to generate.
+     * @param filePath  Path to the output file.
+     * @throws IOException If an I/O error occurs.
+     */
     public static void generateOrders(int numOrders, String filePath) throws IOException {
         Random rand = new Random();
         int startId = 10000;

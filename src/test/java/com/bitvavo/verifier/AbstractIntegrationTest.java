@@ -16,31 +16,32 @@ public class AbstractIntegrationTest {
     protected final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @BeforeEach
-    public void setUpStreams(){
+    public void setUpStreams() {
         outContent.reset();
         System.setOut(new PrintStream(outContent));
     }
 
     @AfterEach
-    public void restoreStreams(){
+    public void restoreStreams() {
         System.setOut(System.out);
         System.setIn(System.in);
     }
 
-    public static File[] getFiles(String first, String... more){
+    public static File[] getFiles(String first, String... more) {
         File[] files = Paths.get(first, more).toFile().listFiles();
 
         Arrays.sort(files, Comparator.comparingInt((file -> Integer.parseInt(file.getName().split("\\.")[0]))));
 
         return files;
     }
+
     protected static Stream<Arguments> loadTestCases(String basePath) throws FileNotFoundException {
         File[] inputFiles = getFiles(basePath, "input");
         File[] outputFiles = getFiles(basePath, "output");
 
         List<Arguments> params = new ArrayList<>();
 
-        for(int i=0; i < inputFiles.length; i++){
+        for (int i = 0; i < inputFiles.length; i++) {
             BufferedReader inputReader = new BufferedReader(new FileReader(inputFiles[i]));
             BufferedReader outputReader = new BufferedReader(new FileReader(outputFiles[i]));
 

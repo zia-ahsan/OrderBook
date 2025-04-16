@@ -9,8 +9,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Unit tests for the OrderBookPrinter class.
+ */
 class OrderBookPrinterTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();

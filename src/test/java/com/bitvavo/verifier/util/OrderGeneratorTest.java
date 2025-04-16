@@ -6,10 +6,18 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Unit tests for the OrderGenerator class.
+ */
 class OrderGeneratorTest {
 
+    /**
+     * Tests that the generateOrders method creates the correct number of orders.
+     *
+     * @throws Exception If an error occurs during the test.
+     */
     @Test
     void testGenerateOrdersCreatesCorrectNumberOfLines() throws Exception {
         int numOrders = 10;
