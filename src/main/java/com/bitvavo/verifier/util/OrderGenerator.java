@@ -39,7 +39,7 @@ public class OrderGenerator {
      * @param filePath  Path to the output file.
      * @throws IOException If an I/O error occurs.
      */
-    public static void generateOrders(int numOrders, String filePath) throws IOException {
+    public static void generateOrders(final int numOrders, final String filePath) throws IOException {
         Random rand = new Random();
         int startId = 10000;
         int minPrice = 90;

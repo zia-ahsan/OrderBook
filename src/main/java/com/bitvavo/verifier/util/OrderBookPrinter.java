@@ -15,8 +15,8 @@ public class OrderBookPrinter {
      * @param buyBook  NavigableMap representing the buy side of the order book.
      * @param sellBook NavigableMap representing the sell side of the order book.
      */
-    public static void printOrderBook(NavigableMap<Integer, Queue<Order>> buyBook,
-                                      NavigableMap<Integer, Queue<Order>> sellBook) {
+    public static void printOrderBook(final NavigableMap<Integer, Queue<Order>> buyBook,
+                                      final NavigableMap<Integer, Queue<Order>> sellBook) {
 
         // Flatten buy and sell sides into ordered lists
         List<String[]> buyLines = new ArrayList<>();
@@ -58,7 +58,7 @@ public class OrderBookPrinter {
      * @param qty The quantity to format.
      * @return A string with space-padded, comma-formatted quantity.
      */
-    private static String formatQty(int qty) {
+    private static String formatQty(final int qty) {
         return String.format(Locale.US, "%,11d", qty); // 11 chars, comma-separated, space-padded
     }
 
@@ -68,7 +68,7 @@ public class OrderBookPrinter {
      * @param price The price to format.
      * @return A string with space-padded, comma-formatted price.
      */
-    private static String formatPrice(int price) {
+    private static String formatPrice(final int price) {
         return String.format(Locale.US, "%,6d", price); // 6 chars, comma-separated, space-padded
     }
 }

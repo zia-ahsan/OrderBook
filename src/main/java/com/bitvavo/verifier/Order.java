@@ -14,7 +14,7 @@ public record Order(String orderId, char side, int price, int quantity) {
      * Creates a new Order with updated quantity.
      * Used to simulate quantity reduction during matching.
      */
-    public Order withReducedQuantity(int amount) {
+    public Order withReducedQuantity(final int amount) {
         return new Order(this.orderId, this.side, this.price, this.quantity - amount);
     }
 }

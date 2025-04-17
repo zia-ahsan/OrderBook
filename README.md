@@ -133,7 +133,7 @@ target/site/jacoco/index.html
 ### Generate Test Orders
 
 ```bash
-java -cp target/OrderBook-1.0-SNAPSHOT.jar com.bitvavo.verifier.OrderGenerator 100000 orders_100k.txt
+java -cp target/OrderBook-1.0-SNAPSHOT.jar com.bitvavo.verifier.util.OrderGenerator 100000 orders_100k.txt
 ```
 
 ---

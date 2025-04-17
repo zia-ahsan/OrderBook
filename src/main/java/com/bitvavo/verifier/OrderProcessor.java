@@ -112,7 +112,7 @@ public class OrderProcessor {
      * @param book  The price-level map (buy or sell side).
      * @param order The remaining unmatched order to add.
      */
-    private void addOrder(NavigableMap<Integer, Queue<Order>> book, Order order) {
+    private void addOrder(final NavigableMap<Integer, Queue<Order>> book, final Order order) {
         book.computeIfAbsent(order.price(), k -> new LinkedList<>()).add(order);
     }
 
